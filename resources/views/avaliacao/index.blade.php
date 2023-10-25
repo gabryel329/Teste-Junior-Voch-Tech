@@ -58,7 +58,7 @@
                                                     <input type="text" class="form-control" id="cargo-display">
                                                     <input style="display:none;" id="cargo-id-input" name="cargos_id">
                                                     <label>Nota</label>
-                                                    <input type="number" class="form-control" id="nota-desempenho" name="nota_desempenho">
+                                                    <input type="number" class="form-control" id="nota-desempenho" min="0" max="10" name="nota_desempenho">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -123,7 +123,7 @@
                                                                     <label>Cargo</label>
                                                                     <input type="text" class="form-control" disabled id="cargo-display{{$cargocolaborador->id}}" value="{{ $cargocolaborador->cargo->cargo }}">
                                                                     <label>Nota</label>
-                                                                    <input type="text" class="form-control" id="nota_desempenho{{$cargocolaborador->id}}" name="nota_desempenho" value="{{ $cargocolaborador->nota_desempenho }}">
+                                                                    <input type="text" class="form-control" min="0" max="10" id="nota_desempenho{{$cargocolaborador->id}}" name="nota_desempenho" value="{{ $cargocolaborador->nota_desempenho }}">
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
