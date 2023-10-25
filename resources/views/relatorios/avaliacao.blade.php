@@ -1,7 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relatório de Avaliação</title>
+    <style>
+        body {
+            text-align: center;
+        }
 
-    <h1>Ranking de Colaboradores Melhores Avaliados</h1>
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
 
-    <table class="table">
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Avaliação de Colaboradores</h1>
+
+    <table>
         <thead>
             <tr>
                 <th>Nome</th>
@@ -13,15 +35,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($cargocolaboradores as $colaborador)
+            @foreach ($colaboradores as $colaborador)
                 <tr>
                     <td>{{ $colaborador->nome }}</td>
                     <td>{{ $colaborador->cpf }}</td>
                     <td>{{ $colaborador->email }}</td>
-                    <td>{{ $colaborador->unidade->nome_fantasia }}</td>
-                    <td>{{ $colaborador->cargo->cargo }}</td>
-                    <td>{{ $colaborador->pivot->nota_desempenho }}</td>
+                    <td>{{ $colaborador->nome_fantasia }}</td>
+                    <td>{{ $colaborador->cargo }}</td>
+                    <td>{{ $colaborador->nota_desempenho }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+</body>
+</html>
+
+

@@ -24,9 +24,10 @@ class Colaborador extends Model
         return $this->belongsTo(Cargo::class, 'cargo_id');
     }
 
-    public function cargos()
+    public function cargocolaborador()
     {
-        return $this->belongsToMany(Cargo::class, 'cargo_colaborador', 'colaborador_id', 'cargo_id')
+        return $this->belongsToMany(CargoColaborador::class, 'cargo_colaborador', 'colaborador_id', 'cargo_id')
             ->withPivot('nota_desempenho');
     }
+
 }

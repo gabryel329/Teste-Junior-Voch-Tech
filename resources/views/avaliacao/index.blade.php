@@ -47,7 +47,7 @@
                                                 @csrf
                                                 <div class="form-group">
                                                     <label class="form-check-label">Colaborador</label>
-                                                    <select class="form-control" id="colaborador-select" name="colaborador_id" required>
+                                                    <select class="form-control" onchange="colaborador(this.value)" id="colaborador-select"  name="colaborador_id" required>
                                                         <option disabled selected>Escolha
                                                         </option>
                                                         @foreach ($colaboradores as $colaborador)
@@ -56,7 +56,7 @@
                                                     </select>
                                                     <label>Cargo</label>
                                                     <input type="text" class="form-control" id="cargo-display">
-                                                    <input type="hidden" id="cargo-id-input" name="cargo_id">
+                                                    <input style="display:none;" id="cargo-id-input" name="cargos_id">
                                                     <label>Nota</label>
                                                     <input type="number" class="form-control" id="nota-desempenho" name="nota_desempenho">
                                                 </div>
@@ -118,19 +118,12 @@
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <div class="form-group">
-                                                                    <label class="form-check-label">Colaborador</label>
-                                                                    <select class="form-control" id="colaborador-select" name="colaborador_id">
-                                                                        <option disabled selected>value="{{ $cargocolaborador->colaborador->nome }}"
-                                                                        </option>
-                                                                        @foreach ($colaboradores as $colaborador)
-                                                                            <option value="{{$colaborador->id}}">{{$colaborador->nome}}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                    <label>Colaborador</label>
+                                                                    <input type="text" class="form-control" disabled id="{{ $cargocolaborador->colaborador->nome }}" value="{{ $cargocolaborador->colaborador->nome }} ">
                                                                     <label>Cargo</label>
-                                                                    <input type="text" class="form-control" id="cargo-display" value="{{ $cargocolaborador->cargo->cargo }}">
-                                                                    <input type="hidden" id="cargo-id-input" name="cargo_id">
+                                                                    <input type="text" class="form-control" disabled id="cargo-display{{$cargocolaborador->id}}" value="{{ $cargocolaborador->cargo->cargo }}">
                                                                     <label>Nota</label>
-                                                                    <input type="text" class="form-control" id="nota_desempenho" name="nota_desempenho" value="{{ $cargocolaborador->nota_desempenho }}">
+                                                                    <input type="text" class="form-control" id="nota_desempenho{{$cargocolaborador->id}}" name="nota_desempenho" value="{{ $cargocolaborador->nota_desempenho }}">
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -161,17 +154,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#colaborador-select').change(function() {
-            var id = $(this).val();
-            if (id) {
-                $.get('/cargocolaboradores/' + id, function(data) {
-                    $('#cargo-display').val(data.cargo);
-                    $('#cargo-id-input').val(data.cargo_id);
-                });
-            }
+
+    function colaborador(id)
+    {
+        $.get('/cargocolaboradores/' +id, function(data) {
+            $('#cargo-display').val(data.cargo);
+            $('#cargo-id-input').val(data.id);
         });
-    });
+    }
+
 </script>
 
 

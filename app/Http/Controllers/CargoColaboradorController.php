@@ -22,7 +22,8 @@ class CargoColaboradorController extends Controller
         $colaborador = Colaborador::find($id);
 
         if ($colaborador) {
-            return response()->json(['cargo' => $colaborador->cargo->cargo]);
+
+            return response()->json(['cargo' => $colaborador->cargo->cargo , 'id' => $colaborador->cargo->id]);
         }
 
         return response()->json(['cargo' => 'Colaborador não encontrado']);
@@ -31,7 +32,8 @@ class CargoColaboradorController extends Controller
     public function store(Request $request)
     {
         $colaborador_id = $request->input('colaborador_id');
-        $cargo_id = $request->input('cargo_id');
+        $cargo_id = $request->input('cargos_id');
+
         $nota_desempenho = $request->input('nota_desempenho');
 
         $existingCargoColaborador = CargoColaborador::where('colaborador_id', $colaborador_id)->first();
@@ -53,8 +55,6 @@ class CargoColaboradorController extends Controller
     {
         $cargocolaboradores = CargoColaborador::find($id);
         $cargocolaboradores->update([
-            'colaborador_id' => $request->input('colaborador_id'),
-            'cargo_id' => $request->input('cargo_id'),
             'nota_desempenho' => $request->input('nota_desempenho'),
         ]);
         return redirect()->back()->with('success', 'Avaliação atualizada com sucesso');
@@ -66,6 +66,6 @@ class CargoColaboradorController extends Controller
 
         $cargocolaboradores->delete();
 
-        return redirect()->route('unidades.index')->with('error', 'Avaliação excluída com sucesso');
+        return redirect()->route('cargocolaboradores.index')->with('error', 'Avaliação excluída com sucesso');
     }
 }
