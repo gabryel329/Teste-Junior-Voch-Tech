@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Projeto Teste Junior Voch Tech
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bem-vindo ao projeto Teste Junior Voch Tech! Este é um projeto que envolve o desenvolvimento de um sistema de gerenciamento de colaboradores em um ambiente de múltiplas unidades, cargos e avaliações de desempenho.
 
-## About Laravel
+## Instruções de Configuração
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Antes de começar a utilizar o projeto, siga estas etapas de configuração:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Execute o Composer Install para atualizar e baixar as dependências do projeto:
+ 
+ - composer install
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+2. Execute as migrações para criar as tabelas no banco de dados:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ - php artisan migrate
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Para criar um usuário administrador, execute:
 
-## Laravel Sponsors
+ - php artisan db:seed
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. Para criar cargos, execute:
 
-### Premium Partners
+ - php artisan db:seed --class=CargosSeeder
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. Para criar unidades, execute:
 
-## Contributing
+ - php artisan db:seed --class=UnidadesSeeder
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Para criar colaboradores e seus relacionamentos (unidades, cargos), execute:
 
-## Code of Conduct
+ - php artisan db:seed --class=ColaboradoresSeeder
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+Certifique-se de seguir essas etapas na ordem apropriada devido aos relacionamentos entre as tabelas.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Funcionalidades do Projeto
 
-## License
+O projeto inclui as seguintes funcionalidades:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Cadastro de Unidades:** Permite o registro e gerenciamento de unidades com informações como nome fantasia, razão social e CNPJ.
+
+2. **Cadastro de Colaboradores:** Permite o cadastro e gerenciamento de colaboradores vinculando-os a uma unidade e cargo específico. As informações incluem nome, CPF e e-mail.
+
+3. **Avaliação de Desempenho:** Fornece a capacidade de cadastrar ou atualizar as notas de desempenho dos colaboradores em uma escala de 0 a 10.
+
+4. **Relatórios:**
+
+- Relatório de Colaboradores: Exibe o nome, CPF, e-mail, unidade e cargo de todos os colaboradores.
+
+- Total de Colaboradores por Unidade: Apresenta informações sobre unidades, incluindo nome fantasia, razão social, CNPJ e o total de colaboradores em cada unidade.
+
+- Ranking de Colaboradores Melhores Avaliados: Mostra os colaboradores melhor avaliados em ordem decrescente, com informações de nome, CPF, e-mail, unidade, cargo e nota de desempenho.
+
+Sinta-se à vontade para explorar e usar essas funcionalidades de acordo com as necessidades do seu projeto.
